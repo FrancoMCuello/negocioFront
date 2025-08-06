@@ -1,5 +1,5 @@
 // src/components/ListaServicios.jsx
-import React from 'react';
+import React from "react";
 
 const ListaServicios = ({ servicios, onDelete, onEdit }) => {
   return (
