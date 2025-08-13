@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-const ClienteForm = ({ onSubmit, initialData }) => {
+const UserForm = ({ onSubmit, initialData }) => {
   const [formData, setFormData] = useState({
     user: "",
-    nombre: "",
-    apellido: "",
     email: "",
-    User_idUser: "",
+    password: "",
+    role: "",
   });
 
   useEffect(() => {
@@ -22,10 +21,9 @@ const ClienteForm = ({ onSubmit, initialData }) => {
     onSubmit(formData);
     setFormData({
       user: "",
-      nombre: "",
-      apellido: "",
       email: "",
-      User_idUser: "",
+      password: "",
+      role: "",
     });
   };
 
@@ -39,20 +37,6 @@ const ClienteForm = ({ onSubmit, initialData }) => {
         required
       />
       <input
-        name="nombre"
-        placeholder="Nombre"
-        value={formData.nombre}
-        onChange={handleChange}
-        required
-      />
-      <input
-        name="apellido"
-        placeholder="Apellido"
-        value={formData.apellido}
-        onChange={handleChange}
-        required
-      />
-      <input
         name="email"
         placeholder="Email"
         value={formData.email}
@@ -60,9 +44,16 @@ const ClienteForm = ({ onSubmit, initialData }) => {
         required
       />
       <input
-        name="User_idUser"
-        placeholder="ID Usuario"
-        value={formData.User_idUser}
+        name="password"
+        placeholder="Password"
+        value={formData.password}
+        onChange={handleChange}
+        required
+      />
+      <input
+        name="role"
+        placeholder="Role"
+        value={formData.role}
         onChange={handleChange}
         required
       />
@@ -70,4 +61,4 @@ const ClienteForm = ({ onSubmit, initialData }) => {
     </form>
   );
 };
-export default ClienteForm;
+export default UserForm;

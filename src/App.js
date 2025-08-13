@@ -1,5 +1,3 @@
-import React from "react";
-import Service from "./Components/ServiceForm";
 import AppRouter from "./routes/AppRouter";
 
 function App() {

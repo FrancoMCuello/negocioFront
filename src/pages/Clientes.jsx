@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   getAllClientes,
-  getClienteById,
+  /*  getClienteById, */
   createCliente,
   updateCliente,
   deleteCliente,
@@ -52,7 +52,6 @@ const Clientes = () => {
         onDelete={handleDelete}
         onEdit={handleEdit}
       />
-      <LogoutButton />
     </>
   );
 };

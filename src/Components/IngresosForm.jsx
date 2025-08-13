@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-const ClienteForm = ({ onSubmit, initialData }) => {
+const IngresosForm = ({ onSubmit, initialData }) => {
   const [formData, setFormData] = useState({
-    user: "",
-    nombre: "",
-    apellido: "",
-    email: "",
+    concepto: "",
+    fecha: "",
+    monto: "",
+    idservice: "",
     User_idUser: "",
   });
 
@@ -21,41 +21,35 @@ const ClienteForm = ({ onSubmit, initialData }) => {
     e.preventDefault();
     onSubmit(formData);
     setFormData({
-      user: "",
-      nombre: "",
-      apellido: "",
-      email: "",
+      concepto: "",
+      fecha: "",
+      monto: "",
       User_idUser: "",
+      idservice: "",
     });
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <input
-        name="user"
-        placeholder="Usuario"
-        value={formData.user}
+        name="concepto"
+        placeholder="Concepto"
+        value={formData.concepto}
         onChange={handleChange}
         required
       />
       <input
-        name="nombre"
-        placeholder="Nombre"
-        value={formData.nombre}
+        name="fecha"
+        type="date"
+        value={formData.fecha}
         onChange={handleChange}
         required
       />
       <input
-        name="apellido"
-        placeholder="Apellido"
-        value={formData.apellido}
-        onChange={handleChange}
-        required
-      />
-      <input
-        name="email"
-        placeholder="Email"
-        value={formData.email}
+        name="monto"
+        placeholder="Monto"
+        type="number"
+        value={formData.monto}
         onChange={handleChange}
         required
       />
@@ -66,8 +60,15 @@ const ClienteForm = ({ onSubmit, initialData }) => {
         onChange={handleChange}
         required
       />
+      <input
+        name="idservice"
+        placeholder="ID Service"
+        value={formData.idservice}
+        onChange={handleChange}
+        required
+      />
       <button type="submit">Guardar</button>
     </form>
   );
 };
-export default ClienteForm;
+export default IngresosForm;

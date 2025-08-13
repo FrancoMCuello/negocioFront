@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-const ClienteForm = ({ onSubmit, initialData }) => {
+const EgresosForm = ({ onSubmit, initialData }) => {
   const [formData, setFormData] = useState({
-    user: "",
-    nombre: "",
-    apellido: "",
-    email: "",
-    User_idUser: "",
+    concepto: "",
+    monto: "",
+    fecha: "",
+    user_idUser: "",
   });
 
   useEffect(() => {
@@ -21,48 +20,41 @@ const ClienteForm = ({ onSubmit, initialData }) => {
     e.preventDefault();
     onSubmit(formData);
     setFormData({
-      user: "",
-      nombre: "",
-      apellido: "",
-      email: "",
-      User_idUser: "",
+      concepto: "",
+      monto: "",
+      fecha: "",
+      user_idUser: "",
     });
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <input
-        name="user"
-        placeholder="Usuario"
-        value={formData.user}
+        name="concepto"
+        placeholder="Concepto"
+        value={formData.concepto}
         onChange={handleChange}
         required
       />
       <input
-        name="nombre"
-        placeholder="Nombre"
-        value={formData.nombre}
+        name="monto"
+        placeholder="Monto"
+        type="number"
+        value={formData.monto}
         onChange={handleChange}
         required
       />
       <input
-        name="apellido"
-        placeholder="Apellido"
-        value={formData.apellido}
+        name="fecha"
+        type="date"
+        value={formData.fecha}
         onChange={handleChange}
         required
       />
       <input
-        name="email"
-        placeholder="Email"
-        value={formData.email}
-        onChange={handleChange}
-        required
-      />
-      <input
-        name="User_idUser"
+        name="user_idUser"
         placeholder="ID Usuario"
-        value={formData.User_idUser}
+        value={formData.user_idUser}
         onChange={handleChange}
         required
       />
@@ -70,4 +62,4 @@ const ClienteForm = ({ onSubmit, initialData }) => {
     </form>
   );
 };
-export default ClienteForm;
+export default EgresosForm;

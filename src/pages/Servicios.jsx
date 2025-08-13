@@ -51,7 +51,6 @@ const Servicios = () => {
         onDelete={handleDelete}
         onEdit={handleEdit}
       />
-      <LogoutButton />
     </>
   );
 };
