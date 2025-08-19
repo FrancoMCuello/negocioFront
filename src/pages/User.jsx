@@ -8,9 +8,9 @@ import {
 } from "../api/userApi.js";
 import UserForm from "../Components/UserForm.jsx";
 import ListaUser from "../Components/ListaUser.jsx";
-import LogoutButton from "../Components/LogoutButton.jsx";
 
 const User = () => {
+  const [userData, setUserData] = useState(null);
   const [user, setUser] = useState([]);
   const [editingUser, setEditingUser] = useState(null);
 
@@ -20,7 +20,28 @@ const User = () => {
       .catch(console.error);
   };
 
+  const handleUser = () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("Debes iniciar sesión para acceder");
+      return null;
+    }
+
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      return {
+        user: payload.user,
+      };
+    } catch (e) {
+      console.error("No se encontro usuario", e);
+      return null;
+    }
+  };
+
   useEffect(() => {
+    const user = handleUser();
+    setUserData(user);
     cargarUser();
   }, []);
 
@@ -44,11 +65,13 @@ const User = () => {
   };
 
   return (
-    <>
-      <h1>User</h1>
+    <div className="p-1 space-y-6">
+      <h1 className="text-2xl font-bold">
+        {userData ? `${userData.user}` : "User"}
+      </h1>
       <UserForm onSubmit={handleFormSubmit} initialData={editingUser} />
       <ListaUser user={user} onDelete={handleDelete} onEdit={handleEdit} />
-    </>
+    </div>
   );
 };
 

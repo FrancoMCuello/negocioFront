@@ -7,9 +7,9 @@ import {
 } from "../api/serviceApi.js";
 import ListaServicios from "../Components/ListaServicios.jsx";
 import ServiceForm from "../Components/ServiceForm.jsx";
-import LogoutButton from "../Components/LogoutButton.jsx";
 
 const Servicios = () => {
+  const [userData, setUserData] = useState(null);
   const [servicios, setServicios] = useState([]);
   const [editingServicie, setEditingService] = useState(null);
 
@@ -19,7 +19,28 @@ const Servicios = () => {
       .catch(console.error);
   };
 
+  const handleUser = () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("Debes iniciar sesión para acceder");
+      return null;
+    }
+
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      return {
+        user: payload.user,
+      };
+    } catch (e) {
+      console.error("No se encontro usuario", e);
+      return null;
+    }
+  };
+
   useEffect(() => {
+    const user = handleUser();
+    setUserData(user);
     cargarServicios();
   }, []);
 
@@ -43,15 +64,17 @@ const Servicios = () => {
   };
 
   return (
-    <>
-      <h1>Servicios</h1>
+    <div className="p-1 space-y-6">
+      <h1 className="text-2xl font-bold">
+        {userData ? `Servicios de ${userData.user}` : "Servicios"}
+      </h1>
       <ServiceForm onSubmit={handleFormSubmit} initialData={editingServicie} />
       <ListaServicios
         servicios={servicios}
         onDelete={handleDelete}
         onEdit={handleEdit}
       />
-    </>
+    </div>
   );
 };
 

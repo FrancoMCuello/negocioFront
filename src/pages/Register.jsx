@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const RegisterForm = () => {
+  const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [mensaje, setMensaje] = useState("");
@@ -13,6 +14,7 @@ const RegisterForm = () => {
       const response = await axios.post(
         "http://localhost:3000/api/auth/register",
         {
+          user,
           email,
           password,
         }
@@ -23,6 +25,7 @@ const RegisterForm = () => {
       localStorage.setItem("token", token);
 
       setMensaje("Registo Exitoso. Redirigiendo...");
+      setUser("");
       setEmail("");
       setPassword("");
 
@@ -37,35 +40,56 @@ const RegisterForm = () => {
   };
 
   return (
-    <>
-      <h2>Registro de Usuario</h2>
-      {mensaje && <p>{mensaje}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <br />
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+        <h1 className="text-2xl font-bold text-center mb-6">Registro</h1>
+        {mensaje && <p>{mensaje}</p>}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <label>Usuario:</label>
+
+          <input
+            type="text"
+            value={user}
+            onChange={(e) => setUser(e.target.value)}
+            className="w-full p-3 border rounded-lg focus:ring focus:ring-blue-300"
+            required
+          />
+          <label className="w-full focus:ring focus:ring-blue-300">
+            Email:
+          </label>
+
           <input
             type="email"
             value={email}
             required
             onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-3 border rounded-lg focus:ring focus:ring-blue-300"
           />
-        </div>
 
-        <div>
           <label>Contraseña:</label>
-          <br />
           <input
             type="password"
             value={password}
             required
             onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-3 border rounded-lg focus:ring focus:ring-blue-300"
           />
-        </div>
 
-        <button type="submit">Registrarse</button>
-      </form>
-    </>
+          <button
+            type="submit"
+            className="w-full bg-green-500 text-white p-3 rounded-lg hover:bg-green-600 transition"
+          >
+            Registrarse
+          </button>
+        </form>
+        <p className="text-center text-sm mt-4">
+          ¿Ya tienes cuenta?{" "}
+          <a href="/login" className="text-blue-500 hover:underline">
+            Inicia sesión
+          </a>
+        </p>
+      </div>
+    </div>
   );
 };
 

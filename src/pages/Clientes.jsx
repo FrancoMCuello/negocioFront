@@ -8,9 +8,9 @@ import {
 } from "../api/clienteApi.js";
 import ListaClientes from "../Components/ListaClientes.jsx";
 import ClientesForm from "../Components/ClientesForm.jsx";
-import LogoutButton from "../Components/LogoutButton.jsx";
 
 const Clientes = () => {
+  const [userData, setUserData] = useState(null);
   const [clientes, setClientes] = useState([]);
   const [editingCliente, setEditingCliente] = useState(null);
 
@@ -19,8 +19,28 @@ const Clientes = () => {
       .then((res) => setClientes(res.data.data))
       .catch(console.error);
   };
+  const handleUser = () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("Debes iniciar sesión para acceder");
+      return null;
+    }
+
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      return {
+        user: payload.user,
+      };
+    } catch (e) {
+      console.error("No se encontro usuario", e);
+      return null;
+    }
+  };
 
   useEffect(() => {
+    const user = handleUser();
+    setUserData(user);
     cargarClientes();
   }, []);
 
@@ -44,15 +64,17 @@ const Clientes = () => {
   };
 
   return (
-    <>
-      <h1>Clientes</h1>
+    <div className="p-1 space-y-6">
+      <h1 className="text-2xl font-bold">
+        {userData ? `Clientes de ${userData.user}` : "Clientes"}
+      </h1>
       <ClientesForm onSubmit={handleFormSubmit} initialData={editingCliente} />
       <ListaClientes
         clientes={clientes}
         onDelete={handleDelete}
         onEdit={handleEdit}
       />
-    </>
+    </div>
   );
 };
 

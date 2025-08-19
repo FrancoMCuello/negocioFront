@@ -8,9 +8,9 @@ import {
 } from "../api/egresosApi.js";
 import ListaEgresos from "../Components/ListaEgreso.jsx";
 import EgresosForm from "../Components/EgresosForm.jsx";
-import LogoutButton from "../Components/LogoutButton.jsx";
 
 const Egresos = () => {
+  const [userData, setUserData] = useState(null);
   const [egresos, setEgresos] = useState([]);
   const [editingEgreso, setEditingEgreso] = useState(null);
 
@@ -20,7 +20,28 @@ const Egresos = () => {
       .catch(console.error);
   };
 
+  const handleUser = () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("Debes iniciar sesión para acceder");
+      return null;
+    }
+
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      return {
+        user: payload.user,
+      };
+    } catch (e) {
+      console.error("No se encontro usuario", e);
+      return null;
+    }
+  };
+
   useEffect(() => {
+    const user = handleUser();
+    setUserData(user);
     cargarEgresos();
   }, []);
 
@@ -44,15 +65,17 @@ const Egresos = () => {
   };
 
   return (
-    <>
-      <h1>Egresos</h1>
+    <div className="p-1 space-y-6">
+      <h1 className="text-2xl font-bold">
+        {userData ? `Egresos de ${userData.user}` : "Egresos"}
+      </h1>
       <EgresosForm onSubmit={handleFormSubmit} initialData={editingEgreso} />
       <ListaEgresos
         egresos={egresos}
         onDelete={handleDelete}
         onEdit={handleEdit}
       />
-    </>
+    </div>
   );
 };
 
