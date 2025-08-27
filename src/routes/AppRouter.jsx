@@ -9,7 +9,7 @@ import User from "../pages/User";
 import AdminRouter from "../Components/AdminRoute";
 import LayoutBase from "../Components/LayoutBase";
 import Home from "../pages/home";
-
+import Dashboards from "../pages/Dashboards";
 const AppRouter = () => {
   return (
     <Routes>
@@ -22,6 +22,7 @@ const AppRouter = () => {
         <Route path="/clientes" element={<Clientes />} />
         <Route path="/ingresos" element={<Ingresos />} />
         <Route path="/egresos" element={<Egresos />} />
+        <Route path="/dashboards" element={<Dashboards />} />
         <Route
           path="/user"
           element={

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
 
 export default function LayoutBase() {
@@ -40,6 +40,12 @@ export default function LayoutBase() {
             className="block px-3 py-2 rounded hover:bg-blue-700"
           >
             Usuarios
+          </Link>
+          <Link
+            to="/dashboards"
+            className="block px-3 py-2 rounded hover:bg-blue-700"
+          >
+            Dashboards
           </Link>
         </nav>
         <LogoutButton />

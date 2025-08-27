@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   getAllUser,
-  getUserById,
+  /* getUserById, */
   createUser,
   updateUser,
   deleteUser,
