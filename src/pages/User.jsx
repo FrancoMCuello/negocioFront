@@ -6,8 +6,8 @@ import {
   updateUser,
   deleteUser,
 } from "../api/userApi.js";
-import UserForm from "../Components/UserForm.jsx";
-import ListaUser from "../Components/ListaUser.jsx";
+import UserForm from "../Components/user/UserForm.jsx";
+import ListaUser from "../Components/user/ListaUser.jsx";
 
 const User = () => {
   const [userData, setUserData] = useState(null);

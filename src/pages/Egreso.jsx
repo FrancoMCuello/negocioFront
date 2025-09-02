@@ -6,8 +6,8 @@ import {
   updateEgreso,
   deleteEgreso,
 } from "../api/egresosApi.js";
-import ListaEgresos from "../Components/ListaEgreso.jsx";
-import EgresosForm from "../Components/EgresosForm.jsx";
+import ListaEgresos from "../Components/egresos/ListaEgreso.jsx";
+import EgresosForm from "../Components/egresos/EgresosForm.jsx";
 
 const Egresos = () => {
   const [userData, setUserData] = useState(null);

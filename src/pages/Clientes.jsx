@@ -6,8 +6,8 @@ import {
   updateCliente,
   deleteCliente,
 } from "../api/clienteApi.js";
-import ListaClientes from "../Components/ListaClientes.jsx";
-import ClientesForm from "../Components/ClientesForm.jsx";
+import ListaClientes from "../Components/clientes/ListaClientes.jsx";
+import ClientesForm from "../Components/clientes/ClientesForm.jsx";
 
 const Clientes = () => {
   const [userData, setUserData] = useState(null);

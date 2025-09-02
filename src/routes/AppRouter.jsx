@@ -6,8 +6,8 @@ import Register from "../pages/Register";
 import Ingresos from "../pages/Ingresos";
 import Egresos from "../pages/Egreso";
 import User from "../pages/User";
-import AdminRouter from "../Components/AdminRoute";
-import LayoutBase from "../Components/LayoutBase";
+import AdminRouter from "../Components/auth/AdminRoute";
+import LayoutBase from "../Components/ui/LayoutBase";
 import Home from "../pages/home";
 import Dashboards from "../pages/Dashboards";
 const AppRouter = () => {

@@ -5,8 +5,8 @@ import {
   updateService,
   deleteService,
 } from "../api/serviceApi.js";
-import ListaServicios from "../Components/ListaServicios.jsx";
-import ServiceForm from "../Components/ServiceForm.jsx";
+import ListaServicios from "../Components/servicios/ListaServicios.jsx";
+import ServiceForm from "../Components/servicios/ServiceForm.jsx";
 
 const Servicios = () => {
   const [userData, setUserData] = useState(null);

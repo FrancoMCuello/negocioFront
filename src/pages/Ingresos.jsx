@@ -6,8 +6,8 @@ import {
   updateIngreso,
   deleteIngreso,
 } from "../api/ingresosApi.js";
-import ListaIngresos from "../Components/ListaIngresos.jsx";
-import IngresosForm from "../Components/IngresosForm.jsx";
+import ListaIngresos from "../Components/ingresos/ListaIngresos.jsx";
+import IngresosForm from "../Components/ingresos/IngresosForm.jsx";
 
 const Ingresos = () => {
   const [userData, setUserData] = useState(null);

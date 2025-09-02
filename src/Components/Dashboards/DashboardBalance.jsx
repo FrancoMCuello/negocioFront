@@ -8,8 +8,8 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { getAllIngresos } from "../api/ingresosApi.js";
-import { getAllEgresos } from "../api/egresosApi.js";
+import { getAllIngresos } from "../../api/ingresosApi.js";
+import { getAllEgresos } from "../../api/egresosApi.js";
 
 const DashboardBalance = () => {
   const [data, setData] = useState([]);
@@ -24,9 +24,6 @@ const DashboardBalance = () => {
 
         const ingresos = ingresosRes.data.data;
         const egresos = egresosRes.data.data;
-
-        console.log("Ingresos:", ingresosRes.data);
-        console.log("Egresos:", egresosRes.data);
 
         //Lista de meses
         const meses = [
